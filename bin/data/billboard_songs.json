@@ -1,0 +1,123 @@
+{
+  "songs": [
+    {
+      "name": "Nice For What",
+      "artist": "Drake",
+      "image_name": "NiceForWhat.png"
+    },
+
+    {
+      "name": "God's Plan",
+      "artist": "Drake",
+      "image_name": "GodsPlan.png"
+    },
+
+    {
+      "name": "Meant To Be",
+      "artist": "Bebe Rexha & Florida George Line",
+      "image_name": "MeantToBe.png"
+    },
+
+    {
+      "name": "Psycho",
+      "artist": "Post Malone feat. Ty Dolla $ign",
+      "image_name": "Psycho.png"
+    },
+
+    {
+      "name": "Look Alive",
+      "artist": "Blocboy JB feat. Drake",
+      "image_name": "LookAlive.png"
+    },
+
+    {
+      "name": "Nice For What",
+      "artist": "Drake",
+      "image_name": "NiceForWhat.png"
+    },
+
+    {
+      "name": "The Middle",
+      "artist": "Zedd, Marren Morris, & Grey",
+      "image_name": "TheMiddle.png"
+    },
+
+    {
+      "name": "I Like It",
+      "artist": "Cardi B, Bad Bunny, & J Balvin",
+      "image_name": "ILikeIt.png"
+    },
+
+    {
+      "name": "Freaky Friday",
+      "artist": "Lil Dicky feat. Chris Brown",
+      "image_name": "FreakyFriday.png"
+    },
+
+    {
+      "name": "Finesse",
+      "artist": "Bruno Mars",
+      "image_name": "Finesse.png"
+    },
+
+    {
+      "name": "Be Careful",
+      "artist": "Cardi B",
+      "image_name": "BeCareful.png"
+    },
+
+    {
+      "name": "Walk It Talk It",
+      "artist": "Migos feat. Drake",
+      "image_name": "WalkItTalkIt.png"
+    },
+
+    {
+      "name": "Plug Walk",
+      "artist": "Rich The Kid",
+      "image_name": "PlugWalk.png"
+    },
+
+    {
+      "name": "Mine",
+      "artist": "Bazzi",
+      "image_name": "Mine.png"
+    },
+
+    {
+      "name": "Never Be The Same",
+      "artist": "Camilla Cabello",
+      "image_name": "NeverBeTheSame.png"
+    },
+
+    {
+      "name": "Havana",
+      "artist": "Camilla Cabello feat. Young Thug",
+      "image_name": "Havana.png"
+    },
+
+    {
+      "name": "Pray For Me",
+      "artist": "The Weeknd & Kendrick Lamar",
+      "image_name": "PrayForMe.png"
+    },
+
+    {
+      "name": "SAD!",
+      "artist": "XXXTentacion",
+      "image_name": "Sad.png"
+    },
+
+    {
+      "name": "Stir Fry",
+      "artist": "Migos",
+      "image_name": "StirFry.png"
+    },
+
+    {
+      "name": "Call Out My Name",
+      "artist": "The Weeknd",
+      "image_name": "CallOutMyName.png"
+    }
+  ]
+}
