@@ -1,5 +1,5 @@
 {
-  "songs": [
+"songs": [
     {
       "name": "Nice For What",
       "artist": "Drake",
@@ -29,13 +29,7 @@
       "artist": "Blocboy JB feat. Drake",
       "image_name": "LookAlive.png"
     },
-
-    {
-      "name": "Nice For What",
-      "artist": "Drake",
-      "image_name": "NiceForWhat.png"
-    },
-
+          
     {
       "name": "The Middle",
       "artist": "Zedd, Marren Morris, & Grey",
@@ -118,6 +112,12 @@
       "name": "Call Out My Name",
       "artist": "The Weeknd",
       "image_name": "CallOutMyName.png"
+    },
+    
+    {
+        "name": "Drip",
+        "artist": "Cardi B feat. Migos",
+        "image_name": "Drip.png"
     }
-  ]
+    ]
 }

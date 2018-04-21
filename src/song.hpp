@@ -10,6 +10,8 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <vector>
+
 
 class Song {
     
@@ -19,10 +21,12 @@ private:
     std::string image_name_;
     
 public:
+    
+    Song(std::string& name, std::string& artist, std::string& image_name): name_(name), artist_(artist), image_name_(image_name) {};
+    
     std::string GetName();
     std::string GetArtist();
     std::string GetImageName();
-    
 };
 
 #endif /* song_hpp */

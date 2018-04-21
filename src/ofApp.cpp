@@ -1,9 +1,15 @@
 #include "ofApp.h"
-#include "json.hpp"
+#include "json_helper.hpp"
+#include "song.hpp"
 
 //--------------------------------------------------------------
 void mediaPlayer::setup(){
     ofSetWindowTitle("Speech Recognition Media Player");
+    
+    JSONHelper helper;
+    std::string file_name = "/Users/ashank/Documents/of_v0.9.8_osx_release/apps/myApps/SpeechMusicPlayer/bin/data/billboard_songs.json";
+    helper.GetSongsFromJSONFile(file_name);
+    
     
 }
 
