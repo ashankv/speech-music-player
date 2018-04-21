@@ -1,6 +1,7 @@
 #include "ofApp.h"
 
 
+
 //--------------------------------------------------------------
 void mediaPlayer::setup(){
     ofSetWindowTitle("Speech Recognition Media Player");
@@ -18,7 +19,7 @@ void mediaPlayer::update(){
 
 //--------------------------------------------------------------
 void mediaPlayer::draw(){
-    song_images_[0].draw(30, 30, 50, 50);
+    DrawImages();
 }
 
 //--------------------------------------------------------------
@@ -88,5 +89,22 @@ void mediaPlayer::PopulateImages() {
         string image_name = "images/" + songs_[i].GetImageName();
         image.load(image_name);
         song_images_.push_back(image);
+    }
+}
+
+void mediaPlayer::DrawImages() {
+    
+    int current_img_y_val = INITIAL_IMG_Y_VAL;
+    int current_text_y_val = INITIAL_TEXT_Y_VAL;
+    
+    for (int i = 0; i < songs_.size(); i++) {
+        song_images_[i].draw(IMAGE_X_VAL, current_img_y_val, IMG_SIZE_SCALER, IMG_SIZE_SCALER);
+        
+        string song_description = songs_[i].GetName() + ", by " + songs_[i].GetArtist();
+        ofDrawBitmapString(song_description, TEXT_X_VAL, current_text_y_val);
+        
+        current_img_y_val += IMAGE_SPACE_VAL;
+        current_text_y_val += TEXT_SPACE_VAL;
+        
     }
 }

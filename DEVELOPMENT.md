@@ -16,4 +16,10 @@ I realized I was still in my old directory in Terminal, so I had to reinitialize
 For some reason, "../bin/data/billboard_songs.json" wasn't working as a viable path for std::ifstream, although I had done the same in NaiveBayes when reading from the file.
 
 **Solution:**
-After a long time, I ended up using the absolute path of the JSON file for the std::ifstream, and this finally worked. 
+After a long time, I ended up using the absolute path of the JSON file for the std::ifstream, and this finally worked.
+
+**Problem 4:** _(Unresolved)_
+Only 10/20 images are being displayed on the screen. I need to figure out how to make a scroll view on the left side of the view.
+
+**Problem 5:** _(Unresolved)_
+I need an efficient way of implementing image buttons. Either I can make my own custom image button class that allows me to click on the image to play the song, or I can specify pixel regions where when mousePressed is called, it should play the song.
