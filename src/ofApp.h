@@ -1,24 +1,40 @@
 #pragma once
 
 #include "ofMain.h"
+#include "json_helper.hpp"
+#include "song.hpp"
 
 class mediaPlayer : public ofBaseApp{
+    
+    
+private:
+    
+    JSONHelper helper_;
+    std::vector<Song> songs_;
+    std::vector<ofImage> song_images_;
 
-	public:
-		void setup();
-		void update();
-		void draw();
 
-		void keyPressed(int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
+
+public:
+    void setup();
+    void update();
+    void draw();
+
+    void keyPressed(int key);
+    void keyReleased(int key);
+    void mouseMoved(int x, int y );
+    void mouseDragged(int x, int y, int button);
+    void mousePressed(int x, int y, int button);
+    void mouseReleased(int x, int y, int button);
+    void mouseEntered(int x, int y);
+    void mouseExited(int x, int y);
+    void windowResized(int w, int h);
+    void dragEvent(ofDragInfo dragInfo);
+    void gotMessage(ofMessage msg);
+    
+    void PopulateSongs();
+    void PopulateImages();
+    
+    void DrawImages();
 		
 };
