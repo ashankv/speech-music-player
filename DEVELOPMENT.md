@@ -18,8 +18,20 @@ For some reason, "../bin/data/billboard_songs.json" wasn't working as a viable p
 **Solution:**
 After a long time, I ended up using the absolute path of the JSON file for the std::ifstream, and this finally worked.
 
-**Problem 4:** _(Unresolved)_
+**Problem 4:**
 Only 10/20 images are being displayed on the screen. I need to figure out how to make a scroll view on the left side of the view.
 
-**Problem 5:** _(Unresolved)_
+**Solution:**
+I found that implementing a scroll view on the left side would be extremely difficult, as libraries dont allow for different UI elements to go into the scroll view. Instead, I put 10 songs in 2 columns in a clean fashion that displays all the information correctly.
+
+**Problem 5:**
 I need an efficient way of implementing image buttons. Either I can make my own custom image button class that allows me to click on the image to play the song, or I can specify pixel regions where when mousePressed is called, it should play the song.
+
+**Solution:**
+Instead of implementing image buttons, I made the title of the song into buttons. These have yet to be formatted correctly.
+
+**Problem 6:**
+To make a cleaner looking UI, I added ofxDatGui to my project. However, whenever I made a button, the text of the button was not showing up.
+
+**Solution:**
+I found out that the font assets from ofxDatGui weren't being compiled by the project. After following the steps at this [StackOverFlow post](https://stackoverflow.com/questions/4882572/how-to-bundle-an-openframeworks-application-in-xcode-relative-resource-linking/17159123#17159123), I was able to fix this issue.

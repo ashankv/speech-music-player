@@ -4,12 +4,11 @@
 
 //--------------------------------------------------------------
 void mediaPlayer::setup(){
+    ofSetDataPathRoot("../Resources/data/");
     ofSetWindowTitle("Speech Recognition Media Player");
     
     PopulateSongs();
     PopulateImages();
-    
-    
 }
 
 //--------------------------------------------------------------
@@ -19,7 +18,7 @@ void mediaPlayer::update(){
 
 //--------------------------------------------------------------
 void mediaPlayer::draw(){
-    DrawImages();
+    DrawImagesAndButtons();
 }
 
 //--------------------------------------------------------------
@@ -92,19 +91,40 @@ void mediaPlayer::PopulateImages() {
     }
 }
 
-void mediaPlayer::DrawImages() {
+void mediaPlayer::DrawImagesAndButtons() {
     
     int current_img_y_val = INITIAL_IMG_Y_VAL;
     int current_text_y_val = INITIAL_TEXT_Y_VAL;
+    int current_img_x_val = INITIAL_IMG_X_VAL;
+    int current_text_x_val = INITIAL_TEXT_X_VAL;
     
     for (int i = 0; i < songs_.size(); i++) {
-        song_images_[i].draw(IMAGE_X_VAL, current_img_y_val, IMG_SIZE_SCALER, IMG_SIZE_SCALER);
+        song_images_[i].draw(current_img_x_val, current_img_y_val, IMG_SIZE_SCALER, IMG_SIZE_SCALER);
         
-        string song_description = songs_[i].GetName() + ", by " + songs_[i].GetArtist();
-        ofDrawBitmapString(song_description, TEXT_X_VAL, current_text_y_val);
+        string song_name = songs_[i].GetName();
+        string song_description = "\n" + songs_[i].GetArtist();
+        
+        ofxDatGuiButton* button = new ofxDatGuiButton(song_name);
+        button->setWidth(200);
+        button->setPosition(current_text_x_val, current_text_y_val);
+        button->setTheme(new ofxDatGuiThemeAqua());
+        button->draw();
+        ofDrawBitmapString(song_description, current_text_x_val, current_text_y_val);
+        
         
         current_img_y_val += IMAGE_SPACE_VAL;
         current_text_y_val += TEXT_SPACE_VAL;
         
+        if (i == (songs_.size() / 2) - 1) {
+            current_img_x_val = IMG_X_OFFSET;
+            current_text_x_val = TEXT_X_OFFSET;
+            current_img_y_val = INITIAL_IMG_Y_VAL;
+            current_text_y_val = INITIAL_TEXT_Y_VAL;
+        }
+        
     }
+}
+
+void mediaPlayer::onButtonEvent(ofxDatGuiButtonEvent e) {
+    cout << e.target->getLabel() << " was clicked!"  << endl;
 }

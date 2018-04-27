@@ -14,37 +14,37 @@
 
     {
       "name": "Meant To Be",
-      "artist": "Bebe Rexha & Florida George Line",
+      "artist": "Bebe Rexha",
       "image_name": "MeantToBe.png"
     },
 
     {
       "name": "Psycho",
-      "artist": "Post Malone feat. Ty Dolla $ign",
+      "artist": "Post Malone \nft. Ty Dolla $ign",
       "image_name": "Psycho.png"
     },
 
     {
       "name": "Look Alive",
-      "artist": "Blocboy JB feat. Drake",
+      "artist": "Blocboy JB ft. Drake",
       "image_name": "LookAlive.jpg"
     },
           
     {
       "name": "The Middle",
-      "artist": "Zedd, Marren Morris, & Grey",
+      "artist": "Zedd",
       "image_name": "TheMiddle.png"
     },
 
     {
       "name": "I Like It",
-      "artist": "Cardi B, Bad Bunny, & J Balvin",
+      "artist": "Cardi B \nft. Bad Bunny, J Balvin",
       "image_name": "ILikeIt.png"
     },
 
     {
       "name": "Freaky Friday",
-      "artist": "Lil Dicky feat. Chris Brown",
+      "artist": "Lil Dicky \nft. Chris Brown",
       "image_name": "FreakyFriday.png"
     },
 
@@ -62,7 +62,7 @@
 
     {
       "name": "Walk It Talk It",
-      "artist": "Migos feat. Drake",
+      "artist": "Migos \nft. Drake",
       "image_name": "WalkItTalkIt.png"
     },
 
@@ -86,7 +86,7 @@
 
     {
       "name": "Havana",
-      "artist": "Camilla Cabello feat. Young Thug",
+      "artist": "Camilla Cabello \nft. Young Thug",
       "image_name": "Havana.png"
     },
 
@@ -116,7 +116,7 @@
     
     {
         "name": "Drip",
-        "artist": "Cardi B feat. Migos",
+        "artist": "Cardi B \nft. Migos",
         "image_name": "Drip.png"
     }
     ]
