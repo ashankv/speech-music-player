@@ -11,6 +11,10 @@ void mediaPlayer::setup(){
     PopulateImagesAndSongMap();
     LoadSoundPlayers();
     SetupButtons();
+    
+    name_font_.load("arial.ttf", 18);
+    artist_font_.load("arial.ttf", 13);
+    
 
 }
 
@@ -28,6 +32,12 @@ void mediaPlayer::draw(){
     
     if (has_clicked_song_) {
         song_images_[current_song_index_].draw(CURRENT_SONG_IMG_X, CURRENT_SONG_IMG_Y, CURRENT_SONG_IMG_DIM, CURRENT_SONG_IMG_DIM);
+        string current_song_name = songs_[current_song_index_].GetName();
+        string current_song_artist = songs_[current_song_index_].GetArtist();
+        
+        name_font_.drawString(current_song_name, 630, 550);
+        artist_font_.drawString(current_song_artist, 630, 575);
+       
     }
 }
 

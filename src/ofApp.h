@@ -41,6 +41,9 @@ private:
     std::vector<ofxDatGuiButton*> song_buttons_;
     std::vector<ofSoundPlayer> song_players_;
     
+    ofTrueTypeFont name_font_;
+    ofTrueTypeFont artist_font_;
+    
     std::map<std::string, int> song_indeces_;
     
     bool has_clicked_song_ = false;
