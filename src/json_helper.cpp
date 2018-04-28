@@ -26,8 +26,9 @@ std::vector<Song> JSONHelper::GetSongsFromJSONFile(std::string& file_name) {
         std::string name = song_json["name"].get<std::string>();
         std::string artist = song_json["artist"].get<std::string>();
         std::string image_name = song_json["image_name"].get<std::string>();
+        std::string audio_file_name = song_json["audio_file_name"].get<std::string>();
         
-        Song song(name, artist, image_name);
+        Song song(name, artist, image_name, audio_file_name);
         
         songs.push_back(song);
     }

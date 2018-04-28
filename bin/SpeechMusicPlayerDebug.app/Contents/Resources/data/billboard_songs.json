@@ -3,121 +3,141 @@
     {
       "name": "Nice For What",
       "artist": "Drake",
-      "image_name": "NiceForWhat.png"
+      "image_name": "NiceForWhat.png",
+      "audio_file_name": "Nice For What.mp3"  
     },
 
     {
       "name": "God's Plan",
       "artist": "Drake",
-      "image_name": "GodsPlan.jpg"
+      "image_name": "GodsPlan.jpg",
+      "audio_file_name": "God's Plan.mp3"  
     },
 
     {
       "name": "Meant To Be",
       "artist": "Bebe Rexha",
-      "image_name": "MeantToBe.png"
+      "image_name": "MeantToBe.png",
+      "audio_file_name": "Meant To Be.mp3"  
     },
 
     {
       "name": "Psycho",
       "artist": "Post Malone \nft. Ty Dolla $ign",
-      "image_name": "Psycho.png"
+      "image_name": "Psycho.png",
+      "audio_file_name": "Psycho.mp3"  
     },
 
     {
       "name": "Look Alive",
-      "artist": "Blocboy JB ft. Drake",
-      "image_name": "LookAlive.jpg"
+      "artist": "Blocboy JB \nft. Drake",
+      "image_name": "LookAlive.jpg",
+      "audio_file_name": "Look Alive.mp3"  
     },
           
     {
       "name": "The Middle",
       "artist": "Zedd",
-      "image_name": "TheMiddle.png"
+      "image_name": "TheMiddle.png",
+      "audio_file_name": "The Middle.mp3"  
     },
 
     {
       "name": "I Like It",
       "artist": "Cardi B \nft. Bad Bunny, J Balvin",
-      "image_name": "ILikeIt.png"
+      "image_name": "ILikeIt.png",
+      "audio_file_name": "I Like It.mp3"  
     },
 
     {
       "name": "Freaky Friday",
       "artist": "Lil Dicky \nft. Chris Brown",
-      "image_name": "FreakyFriday.png"
+      "image_name": "FreakyFriday.png",
+      "audio_file_name": "Freaky Friday.mp3"  
     },
 
     {
       "name": "Finesse",
       "artist": "Bruno Mars",
-      "image_name": "Finesse.png"
+      "image_name": "Finesse.png",
+      "audio_file_name": "Finesse.mp3"  
     },
 
     {
       "name": "Be Careful",
       "artist": "Cardi B",
-      "image_name": "BeCareful.png"
+      "image_name": "BeCareful.png",
+      "audio_file_name": "Be Careful.mp3"  
     },
 
     {
       "name": "Walk It Talk It",
       "artist": "Migos \nft. Drake",
-      "image_name": "WalkItTalkIt.png"
+      "image_name": "WalkItTalkIt.png",
+      "audio_file_name": "Walk It Talk It.mp3"  
     },
 
     {
       "name": "Plug Walk",
       "artist": "Rich The Kid",
-      "image_name": "PlugWalk.jpg"
+      "image_name": "PlugWalk.jpg",
+      "audio_file_name": "Plug Walk.mp3"  
     },
 
     {
       "name": "Mine",
       "artist": "Bazzi",
-      "image_name": "Mine.jpg"
+      "image_name": "Mine.jpg",
+      "audio_file_name": "Mine.mp3"  
     },
 
     {
       "name": "Never Be The Same",
       "artist": "Camilla Cabello",
-      "image_name": "NeverBeTheSame.png"
+      "image_name": "NeverBeTheSame.png",
+      "audio_file_name": "Never Be The Same.mp3"  
     },
 
     {
       "name": "Havana",
       "artist": "Camilla Cabello \nft. Young Thug",
-      "image_name": "Havana.png"
+      "image_name": "Havana.png",
+      "audio_file_name": "Havana.mp3"  
     },
 
     {
       "name": "Pray For Me",
-      "artist": "The Weeknd & Kendrick Lamar",
-      "image_name": "PrayForMe.jpg"
+      "artist": "The Weeknd \nft. Kendrick Lamar",
+      "image_name": "PrayForMe.jpg",
+      "audio_file_name": "Pray For Me.mp3"  
     },
 
     {
       "name": "SAD!",
       "artist": "XXXTentacion",
-      "image_name": "Sad.jpg"
+      "image_name": "SAD!.jpg",
+      "audio_file_name": "SAD!.mp3"  
     },
 
     {
       "name": "Stir Fry",
       "artist": "Migos",
-      "image_name": "StirFry.jpg"
+      "image_name": "StirFry.jpg",
+      "audio_file_name": "Stir Fry.mp3"  
     },
 
     {
       "name": "Call Out My Name",
       "artist": "The Weeknd",
-      "image_name": "CallOutMyName.jpg"
+      "image_name": "CallOutMyName.jpg",
+      "audio_file_name": "Call Out My Name.mp3"  
     },
     
     {
         "name": "Drip",
         "artist": "Cardi B \nft. Migos",
-        "image_name": "Drip.png"
+        "image_name": "Drip.png",
+        "audio_file_name": "Drip.mp3"  
     }
     ]
 }

@@ -19,6 +19,10 @@ std::string Song::GetImageName() {
     return image_name_;
 }
 
+std::string Song::GetAudioFileName() {
+    return audio_file_name_;
+}
+
 
 
 
