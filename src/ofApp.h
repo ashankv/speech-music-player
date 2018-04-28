@@ -39,6 +39,12 @@ class mediaPlayer : public ofBaseApp {
     const int PLAY_BTN_X = 750;
     const int PLAY_BTN_Y = 610;
     const int PLAY_BTN_DIM = 75;
+    
+    const int SKIP_CTRL_BTNS_Y = 620;
+    const int SKIP_CTRL_BTNS_DIM = 50;
+    
+    const int SKIP_BTN_X = 843;
+    const int PREVIOUS_BTN_X = 683;
 
 private:
     
@@ -54,6 +60,8 @@ private:
     
     ofImage play_button_;
     ofImage pause_button_;
+    ofImage skip_button_;
+    ofImage previous_button_;
     
     std::map<std::string, int> song_indeces_;
     
