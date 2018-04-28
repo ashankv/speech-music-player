@@ -31,6 +31,14 @@ class mediaPlayer : public ofBaseApp {
     const int CURRENT_SONG_IMG_X = 630;
     const int CURRENT_SONG_IMG_Y = 220;
     const int CURRENT_SONG_IMG_DIM = 300;
+    
+    const int CURRENT_SONG_INFO_X = 630;
+    const int CURRENT_SONG_NAME_Y = 550;
+    const int CURRENT_SONG_ARTIST_Y = 575;
+    
+    const int PLAY_BTN_X = 750;
+    const int PLAY_BTN_Y = 610;
+    const int PLAY_BTN_DIM = 75;
 
 private:
     
@@ -44,9 +52,13 @@ private:
     ofTrueTypeFont name_font_;
     ofTrueTypeFont artist_font_;
     
+    ofImage play_button_;
+    ofImage pause_button_;
+    
     std::map<std::string, int> song_indeces_;
     
     bool has_clicked_song_ = false;
+    bool is_paused_ = false;
     int current_song_index_ = -1;
 
 

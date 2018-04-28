@@ -28,10 +28,13 @@ I found that implementing a scroll view on the left side would be extremely diff
 I need an efficient way of implementing image buttons. Either I can make my own custom image button class that allows me to click on the image to play the song, or I can specify pixel regions where when mousePressed is called, it should play the song.
 
 **Solution:**
-Instead of implementing image buttons, I made the title of the song into buttons. These have yet to be formatted correctly.
+Instead of implementing image buttons, I made the title of the song into buttons using the ofxDatGui library. These have yet to be formatted correctly.
 
 **Problem 6:**
 To make a cleaner looking UI, I added ofxDatGui to my project. However, whenever I made a button, the text of the button was not showing up.
 
 **Solution:**
 I found out that the font assets from ofxDatGui weren't being compiled by the project. After following the steps at this [StackOverFlow post](https://stackoverflow.com/questions/4882572/how-to-bundle-an-openframeworks-application-in-xcode-relative-resource-linking/17159123#17159123), I was able to fix this issue.
+
+**Updates as of 4/28:**
+The hardest issues I have encountered thus far are Problem 4, 5, and 6, which were all UI related. Formatting everything using ofxDatGui was the most challenging part for me thus far. Implementing the functions of the buttons to play the songs have been fairly straightforward. As of now, all the buttons and song information are being displayed correctly, and each button is linked to a specific player which plays the song. I have also implemented a play/pause button that plays and pauses the song correctly.

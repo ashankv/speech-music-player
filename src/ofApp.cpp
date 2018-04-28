@@ -14,6 +14,8 @@ void mediaPlayer::setup(){
     
     name_font_.load("arial.ttf", 18);
     artist_font_.load("arial.ttf", 13);
+    play_button_.load("images/play-button.png");
+    pause_button_.load("images/pause.png");
     
 
 }
@@ -28,6 +30,7 @@ void mediaPlayer::update(){
 
 //--------------------------------------------------------------
 void mediaPlayer::draw(){
+    
     DrawImagesAndButtons();
     
     if (has_clicked_song_) {
@@ -35,9 +38,15 @@ void mediaPlayer::draw(){
         string current_song_name = songs_[current_song_index_].GetName();
         string current_song_artist = songs_[current_song_index_].GetArtist();
         
-        name_font_.drawString(current_song_name, 630, 550);
-        artist_font_.drawString(current_song_artist, 630, 575);
-       
+        name_font_.drawString(current_song_name, CURRENT_SONG_INFO_X, CURRENT_SONG_NAME_Y);
+        artist_font_.drawString(current_song_artist, CURRENT_SONG_INFO_X, CURRENT_SONG_ARTIST_Y);
+        
+        if (is_paused_) {
+            play_button_.draw(PLAY_BTN_X, PLAY_BTN_Y, PLAY_BTN_DIM, PLAY_BTN_DIM);
+        } else {
+            pause_button_.draw(PLAY_BTN_X, PLAY_BTN_Y, PLAY_BTN_DIM, PLAY_BTN_DIM);
+        }
+        
     }
 }
 
@@ -63,6 +72,14 @@ void mediaPlayer::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void mediaPlayer::mousePressed(int x, int y, int button){
+    
+    std::cout << x << "+" << y << std::endl;
+    
+    if ((x >= PLAY_BTN_X && x <= PLAY_BTN_X + PLAY_BTN_DIM)
+        && (y >= PLAY_BTN_Y && y <= PLAY_BTN_Y + PLAY_BTN_DIM) && current_song_index_ != -1) {
+        is_paused_ = !is_paused_;
+        song_players_[current_song_index_].setPaused(is_paused_);
+    }
 
 }
 
