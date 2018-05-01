@@ -4,6 +4,7 @@
 #include "json_helper.hpp"
 #include "song.hpp"
 #include "ofxDatGui.h"
+#include "ofxGSTT.h"
 
 
 class mediaPlayer : public ofBaseApp {
@@ -29,18 +30,22 @@ class mediaPlayer : public ofBaseApp {
     const int BTN_WIDTH = 180;
     
     const int CURRENT_SONG_IMG_X = 630;
-    const int CURRENT_SONG_IMG_Y = 220;
+    const int CURRENT_SONG_IMG_Y = 120;
     const int CURRENT_SONG_IMG_DIM = 300;
     
     const int CURRENT_SONG_INFO_X = 630;
-    const int CURRENT_SONG_NAME_Y = 550;
-    const int CURRENT_SONG_ARTIST_Y = 575;
+    const int CURRENT_SONG_NAME_Y = 450;
+    const int CURRENT_SONG_ARTIST_Y = 475;
     
     const int PLAY_BTN_X = 750;
-    const int PLAY_BTN_Y = 610;
+    const int PLAY_BTN_Y = 510;
     const int PLAY_BTN_DIM = 75;
     
-    const int SKIP_CTRL_BTNS_Y = 620;
+    const int MIC_BTN_X = 758;
+    const int MIC_BTN_Y = 595;
+    const int MIC_BTN_DIM = 60;
+    
+    const int SKIP_CTRL_BTNS_Y = 520;
     const int SKIP_CTRL_BTNS_DIM = 50;
     
     const int SKIP_BTN_X = 843;
@@ -62,12 +67,22 @@ private:
     ofImage pause_button_;
     ofImage skip_button_;
     ofImage previous_button_;
+    ofImage mic_button_;
     
     std::map<std::string, int> song_indeces_;
+    
+    ofSoundStream sound_stream_;
+    ofxGSTT gstt_;
+    //string response_str_;
+    bool is_auto_recording_ = false;
+    float volume_threshold_ = 0.05f;
+    bool is_mic_on_ = false;
     
     bool has_clicked_song_ = false;
     bool is_paused_ = false;
     int current_song_index_ = -1;
+    
+    
 
 
 public:
@@ -90,6 +105,10 @@ public:
     void PopulateSongs();
     void PopulateImagesAndSongMap();
     
+    void SkipButtonPressed();
+    void PreviousButtonPressed();
+    void ShuffleCommand();
+    
     void LoadSoundPlayers();
     
     void DrawImagesAndButtons();
@@ -97,5 +116,9 @@ public:
     void SetupButtons();
     
     void onButtonEvent(ofxDatGuiButtonEvent e);
+    
+    void gsttResponse(ofxGSTTResponseArgs & response);
+    void SetupGSTT();
+
 		
 };

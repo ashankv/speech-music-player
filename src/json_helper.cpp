@@ -16,7 +16,8 @@ std::vector<Song> JSONHelper::GetSongsFromJSONFile(std::string& file_name) {
     
     if (input.peek() == std::ifstream::traits_type::eof()) {
         std::cout << "File Does Not Exist" << std::endl;
-        return;
+        std::vector<Song> empty_list;
+        return empty_list;
     }
     
     json billboard_json = json::parse(input);
