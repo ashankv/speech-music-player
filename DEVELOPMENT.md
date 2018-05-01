@@ -60,4 +60,13 @@ After fixing problem 7, I was able to successfully get a response translated fro
     6. _shuffle_, plays a random song.
 These are all controlled on click of the mic button in the UI. Furthermore, you can now press 'P' to pause, and 'T' to toggle push to talk.
 All code has been thoroughly documented, and all files have been updated accordingly.
+
+**Problem 8:**
+I wanted to put the ofImages and ofSoundPlayers in the Song class as member variables. However, whenever the draw method was called, the app would crash because of accessing the ofImage member variables. The sound players, however worked.
+
+**Solution:**
+I left the ofImages as part of a vector in ofApp.h, but put the ofSoundPlayers as member variables of the Song class. This allowed the app to run.
+
+**Updates as of 5/1:**
+All the code is cleaned up and thoroughly documented. ofSoundPlayers are part of the Song object and accessed through the song vector.
     

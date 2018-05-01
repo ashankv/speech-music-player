@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include "ofMain.h"
 
 // Song class, which has a name, artist, image name, and audio file name
 class Song {
@@ -20,6 +21,8 @@ private:
     std::string artist_;
     std::string image_name_;
     std::string audio_file_name_;
+    ofSoundPlayer sound_player_;
+    ofImage image_;
     
 public:
     
@@ -29,6 +32,10 @@ public:
     std::string GetArtist();
     std::string GetImageName();
     std::string GetAudioFileName();
+    ofSoundPlayer GetSoundPlayer();
+    ofImage GetImage();
+    
+    void SetSoundPlayer(ofSoundPlayer& sound_player);
 };
 
 #endif /* song_hpp */

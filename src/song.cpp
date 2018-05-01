@@ -23,6 +23,14 @@ std::string Song::GetAudioFileName() {
     return audio_file_name_;
 }
 
+ofSoundPlayer Song::GetSoundPlayer() {
+    return sound_player_;
+}
 
+ofImage Song::GetImage() {
+    return image_;
+}
 
-
+void Song::SetSoundPlayer(ofSoundPlayer& sound_player) {
+    sound_player_ = sound_player;
+}

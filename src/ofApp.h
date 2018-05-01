@@ -6,7 +6,6 @@
 #include "ofxDatGui.h"
 #include "ofxGSTT.h"
 
-
 class mediaPlayer : public ofBaseApp {
     
     // Change absolute path to data according to you
@@ -79,15 +78,24 @@ class mediaPlayer : public ofBaseApp {
     
     // Background color of the window
     const int BACKGROUND_HEX_COLOR = 0x90CAF9;
-
+    
 private:
     
     JSONHelper helper_; // JSON helper object for parsing JSON
     std::vector<Song> songs_; // Vector of Song objects
-    std::vector<ofImage> song_images_; // Vector of Song images
+    std::vector<ofxDatGuiButton*> song_buttons_; // Vector of Buttons corresponding to Song objects (NEEDS TO BE SEPARATED FROM SONG CLASS!)
+    std::vector<ofImage> song_images_; // Vector of Images corresponding to Song objects (NEEDS TO BE SEPARATED FROM SONG CLASS!)
+    std::map<std::string, int> song_indeces_; // Map of song name to index in songs_ vector
     
-    std::vector<ofxDatGuiButton*> song_buttons_; // Vector of Buttons corresponding to Song objects
-    std::vector<ofSoundPlayer> song_players_; // Vector of Sound Players corresponding to Song objects
+    bool has_clicked_song_ = false; // Check if song has been clicked yet
+    bool is_paused_ = false; // Check if current song is paused
+    int current_song_index_ = -1; // Holds the index of the current song
+    
+    // GSTT variables
+    ofSoundStream sound_stream_;
+    ofxGSTT gstt_;
+    float volume_threshold_ = 0.05f;
+    bool is_mic_on_ = false;
     
     ofTrueTypeFont name_font_; // Font of name of song
     ofTrueTypeFont artist_font_; // Font of name of artist
@@ -104,31 +112,22 @@ private:
     ofSoundPlayer mic_open_;
     ofSoundPlayer mic_close_;
     
-    std::map<std::string, int> song_indeces_; // Map of song name to index in songs_ vector
-    
-    // GSTT variables
-    ofSoundStream sound_stream_;
-    ofxGSTT gstt_;
-    bool is_auto_recording_ = false;
-    float volume_threshold_ = 0.05f;
-    bool is_mic_on_ = false;
-    
-    bool has_clicked_song_ = false; // Check if song has been clicked yet
-    bool is_paused_ = false; // Check if current song is paused
-    int current_song_index_ = -1; // Holds the index of the current song
-    
     // Functions for populating song data structure
-    void PopulateSongs();
-    void PopulateImagesAndSongMap();
+    void PopulateSongsAndMap();
+    void PopulateImagesAndSoundPlayers();
     
     // Setup UI/Speech Recognition elements
-    void SetupSoundPlayers();
     void SetupButtons();
     void SetupGSTT();
     
+    // Functions for UI elements
+    void LoadFonts();
+    void LoadMicSounds();
+    void LoadMediaControlImages();
+    
     // Function for drawing images and buttons
     void DrawImagesAndButtons();
-
+    
 public:
     
     // Function for one time setup
@@ -139,7 +138,7 @@ public:
     
     // Function for drawing on the user interface
     void draw();
-
+    
     // Functions for key openFrameworks methods
     void keyPressed(int key);
     void mousePressed(int x, int y, int button);
