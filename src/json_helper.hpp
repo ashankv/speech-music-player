@@ -15,9 +15,12 @@
 #include "json.hpp"
 #include "song.hpp"
 
+// Helper class for parsing JSON file
 class JSONHelper {
   
 public:
+    
+    // JSON helper method
     std::vector<Song> GetSongsFromJSONFile(std::string& file_name);
 };
 

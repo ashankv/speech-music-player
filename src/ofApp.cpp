@@ -4,32 +4,37 @@
 
 // Setup method
 void mediaPlayer::setup(){
+    
     ofSetDataPathRoot("../Resources/data/");
     ofSetWindowTitle("Speech Recognition Media Player");
-    ofSetBackgroundColorHex(0x90CAF9);
+    ofSetBackgroundColorHex(BACKGROUND_HEX_COLOR);
     ofSetLogLevel(OF_LOG_VERBOSE);
     
     // Load all data, buttons, and songs
     PopulateSongs();
     PopulateImagesAndSongMap();
-    LoadSoundPlayers();
-    SetupButtons();
     
-    // Setup GSTT addon
+    // Setup UI / Speech elements
+    SetupSoundPlayers();
+    SetupButtons();
     SetupGSTT();
     
     // Load fonts
-    name_font_.load("arial.ttf", 18);
-    artist_font_.load("arial.ttf", 13);
+    name_font_.load(ABS_PATH + "AlegreyaSans-Bold.ttf", NAME_FONT_SIZE);
+    artist_font_.load(ABS_PATH + "AlegreyaSans-BoldItalic.ttf", ARTIST_FONT_SIZE);
+    info_font_.load(ABS_PATH + "RobotoCondensed-Regular.ttf", INFO_FONT_SIZE);
+    
+    // Load mic sound players
+    mic_open_.load(ABS_PATH + "audio/Open Siri.mp3");
+    mic_close_.load(ABS_PATH + "audio/Close Siri.mp3");
     
     // Loading media control images
     play_button_.load("images/play-button.png");
     pause_button_.load("images/pause.png");
     skip_button_.load("images/skip.png");
     previous_button_.load("images/previous.png");
-    mic_button_.load("/Users/ashank/Documents/of_v0.9.8_osx_release/apps/myApps/SpeechMusicPlayer/bin/data/images/mic-button.png");
+    mic_button_.load(ABS_PATH + "images/mic-button.png");
 }
-
 
 // Update method called before every draw.
 void mediaPlayer::update() {
@@ -72,26 +77,26 @@ void mediaPlayer::draw(){
         skip_button_.draw(SKIP_BTN_X, SKIP_CTRL_BTNS_Y, SKIP_CTRL_BTNS_DIM, SKIP_CTRL_BTNS_DIM);
         previous_button_.draw(PREVIOUS_BTN_X, SKIP_CTRL_BTNS_Y, SKIP_CTRL_BTNS_DIM, SKIP_CTRL_BTNS_DIM);
         mic_button_.draw(MIC_BTN_X, MIC_BTN_Y, MIC_BTN_DIM, MIC_BTN_DIM);
+        
+        info_font_.drawString("Push to Talk! Once you are\ndone, click this button again.\nCommands: play [song name],\npause, skip, previous, shuffle.", TALK_INFO_X, TALK_INFO_Y);
     }
 }
 
 //--------------------------------------------------------------
-void mediaPlayer::keyPressed(int key){
-
-}
-
-//--------------------------------------------------------------
-void mediaPlayer::keyReleased(int key){
-
-}
-
-//--------------------------------------------------------------
-void mediaPlayer::mouseMoved(int x, int y ){
-
-}
-
-//--------------------------------------------------------------
-void mediaPlayer::mouseDragged(int x, int y, int button){
+void mediaPlayer::keyPressed(int key) {
+    
+    int upper_key = toupper(key);
+    
+    if (upper_key == 'P' && has_clicked_song_) {
+        
+        // Change the pause boolean to it's opposite and set the corresponding player to that boolean
+        is_paused_ = !is_paused_;
+        song_players_[current_song_index_].setPaused(is_paused_);
+        
+    } else if (upper_key == 'T') {
+        
+        MicButtonPressed();
+    }
 
 }
 
@@ -133,51 +138,8 @@ void mediaPlayer::mousePressed(int x, int y, int button){
     if ((x >= MIC_BTN_X && x <= MIC_BTN_X + MIC_BTN_DIM)
         && (y >= MIC_BTN_Y && y <= MIC_BTN_Y + MIC_BTN_DIM) && current_song_index_ != -1) {
         
-        // Change the mic turned on boolean to it's opposite
-        is_mic_on_ = !is_mic_on_;
-        
-        is_paused_ = true;
-        song_players_[current_song_index_].setPaused(is_paused_);
-        
-        // Start recording if the mic is on, stop otherwise
-        if (is_mic_on_) {
-            gstt_.startRecording();
-        } else {
-            gstt_.stopRecording();
-        }
-    
-        std::cout << "MIC BUTTON PRESSED" << std::endl;
+        MicButtonPressed();
     }
-
-}
-
-//--------------------------------------------------------------
-void mediaPlayer::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void mediaPlayer::mouseEntered(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void mediaPlayer::mouseExited(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void mediaPlayer::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void mediaPlayer::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void mediaPlayer::dragEvent(ofDragInfo dragInfo){
 
 }
 
@@ -226,9 +188,9 @@ void mediaPlayer::DrawImagesAndButtons() {
         
         ofDrawBitmapString(song_description, current_text_x_val, current_text_y_val);
         
-        current_btn_y_val += BTN_SPACE_VAL;
-        current_img_y_val += IMAGE_SPACE_VAL;
-        current_text_y_val += TEXT_SPACE_VAL;
+        current_btn_y_val += VERT_SPACE_VAL;
+        current_img_y_val += VERT_SPACE_VAL;
+        current_text_y_val += VERT_SPACE_VAL;
         
         if (i == (songs_.size() / 2) - 1) {
             current_img_x_val = IMG_X_OFFSET;
@@ -261,7 +223,7 @@ void mediaPlayer::SetupButtons() {
         
         song_buttons_.push_back(button);
         
-        current_btn_y_val += BTN_SPACE_VAL;
+        current_btn_y_val += VERT_SPACE_VAL;
         
         // Start new column if we reach 10 songs
         if (i == (songs_.size() / 2) - 1) {
@@ -296,7 +258,7 @@ void mediaPlayer::onButtonEvent(ofxDatGuiButtonEvent e) {
 }
 
 // Loading sound players for each sound file method
-void mediaPlayer::LoadSoundPlayers() {
+void mediaPlayer::SetupSoundPlayers() {
     
     // Load sound players into sound player vector
     for (int i = 0; i < songs_.size(); i++) {
@@ -309,6 +271,7 @@ void mediaPlayer::LoadSoundPlayers() {
 
 // GSTT Response method for processing speech
 void mediaPlayer::gsttResponse(ofxGSTTResponseArgs& response){
+    
     cout << "Response: " << response.msg << endl;
     cout << "With confidence: " << ofToString(response.confidence) << endl;
     float tProcessingTime = (response.tReceived - response.tSend)/1000.f;
@@ -331,15 +294,15 @@ void mediaPlayer::gsttResponse(ofxGSTTResponseArgs& response){
     if (command == "play") {
         
         // Resume playback if the command is play
-        if (response_str.size() == 4) {
+        if (response_str.size() == PLAY_TXT_SIZE) {
             
             is_paused_ = false;
             song_players_[current_song_index_].setPaused(is_paused_);
             
         } else {
             
-            // Get the song to be played and convert to lowercase
-            std::string song_to_play = response_str.substr(5);
+            // Get the song to be played, convert to lowercase, and remove punctuation
+            std::string song_to_play = response_str.substr(PLAY_PARAMETER_INDEX);
             std::transform(song_to_play.begin(), song_to_play.end(), song_to_play.begin(), ::tolower);
             song_to_play.erase(remove_if(song_to_play.begin(), song_to_play.end(), ::ispunct), song_to_play.end());
 
@@ -353,7 +316,13 @@ void mediaPlayer::gsttResponse(ofxGSTTResponseArgs& response){
                 
                 // Play the song to play if it matches with any of the songs
                 if (song_to_play == song_name) {
-                    song_players_[current_song_index_].stop();
+                    
+                    if (has_clicked_song_) {
+                        song_players_[current_song_index_].stop();
+                    } else {
+                        has_clicked_song_ = true;
+                    }
+                    
                     current_song_index_ = song_indeces_[song.GetName()];
                     
                     is_paused_ = false;
@@ -373,6 +342,28 @@ void mediaPlayer::gsttResponse(ofxGSTTResponseArgs& response){
     } else if (command == "shuffle") {
         ShuffleCommand();
     }
+}
+
+void mediaPlayer::MicButtonPressed() {
+    
+    // Change the mic turned on boolean to it's opposite
+    is_mic_on_ = !is_mic_on_;
+    
+    if (has_clicked_song_) {
+        is_paused_ = true;
+        song_players_[current_song_index_].setPaused(is_paused_);
+    }
+    
+    // Start recording if the mic is on, stop otherwise
+    if (is_mic_on_) {
+        mic_open_.play();
+        gstt_.startRecording();
+    } else {
+        gstt_.stopRecording();
+        mic_close_.play();
+    }
+    
+    std::cout << "MIC BUTTON PRESSED" << std::endl;
 }
 
 // Method for performing skip action

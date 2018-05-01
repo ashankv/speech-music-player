@@ -12,7 +12,7 @@
 #include <iostream>
 #include <vector>
 
-
+// Song class, which has a name, artist, image name, and audio file name
 class Song {
     
 private:

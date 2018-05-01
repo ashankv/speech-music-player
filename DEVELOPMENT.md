@@ -58,5 +58,6 @@ After fixing problem 7, I was able to successfully get a response translated fro
     4. _skip_, skips to the next song.
     5. _previous_, goes to the previous song.
     6. _shuffle_, plays a random song.
-These are all controlled on click of the mic button in the UI.
+These are all controlled on click of the mic button in the UI. Furthermore, you can now press 'P' to pause, and 'T' to toggle push to talk.
+All code has been thoroughly documented, and all files have been updated accordingly.
     
