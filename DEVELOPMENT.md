@@ -68,5 +68,5 @@ I wanted to put the ofImages and ofSoundPlayers in the Song class as member vari
 I left the ofImages as part of a vector in ofApp.h, but put the ofSoundPlayers as member variables of the Song class. This allowed the app to run.
 
 **Updates as of 5/1:**
-All the code is cleaned up and thoroughly documented. ofSoundPlayers are part of the Song object and accessed through the song vector.
+All the code is cleaned up and thoroughly documented. ofSoundPlayers are part of the Song object and accessed through the song vector. Test cases for JSONHelper (the only class without UI integration) have been added.
     
