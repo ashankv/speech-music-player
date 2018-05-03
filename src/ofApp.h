@@ -101,14 +101,12 @@ private:
     
     bool has_clicked_song_ = false; // Check if song has been clicked yet
     bool is_paused_ = false; // Check if current song is paused
+    bool is_mic_on_ = false; // Check if mic is on
     int current_song_index_ = -1; // Holds the index of the current song
     
     // GSTT variables
     ofSoundStream sound_stream_;
     ofxGSTT gstt_;
-    
-    bool is_mic_on_ = false;
-    
     
     ofTrueTypeFont name_font_; // Font of name of song
     ofTrueTypeFont artist_font_; // Font of name of artist

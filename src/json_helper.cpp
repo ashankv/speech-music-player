@@ -7,6 +7,7 @@
 
 #include "json_helper.hpp"
 
+// JSON For Modern C++
 using json = nlohmann::json;
 
 // Creates a vector of songs given a JSON file name
