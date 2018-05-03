@@ -30,4 +30,4 @@ There are two key bindings as well:
 
 ## Application Screenshot
 
-! [alt text](https://ibb.co/jMZDG7)
+![Demo](bin/data/images/demo.png)
