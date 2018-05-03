@@ -41,6 +41,8 @@ void mediaPlayer::draw(){
     
     DrawImagesAndButtons();
     
+    info_font_.drawString("* Press 'P' to play or pause the current song!\n* Press 'T' to toggle push to talk!", KEY_INFO_X, KEY_INFO_Y);
+    
     // Draw image of current song on the right with play/pause button and corresponding information
     if (has_clicked_song_) {
         
@@ -134,7 +136,7 @@ void mediaPlayer::mousePressed(int x, int y, int button){
 // Method that populates song vector using JSON helper
 void mediaPlayer::PopulateSongsAndMap() {
     
-    std::string file_name = "/Users/ashank/Documents/of_v0.9.8_osx_release/apps/myApps/SpeechMusicPlayer/bin/data/billboard_songs.json";
+    std::string file_name = ABS_PATH + "billboard_songs.json";
     songs_ = helper_.GetSongsFromJSONFile(file_name);
     
     for (int i = 0; i < songs_.size(); i++) {
@@ -256,16 +258,18 @@ void mediaPlayer::DrawImagesAndButtons() {
 // GSTT Response method for processing speech
 void mediaPlayer::gsttResponse(ofxGSTTResponseArgs& response){
     
+    // Print out response details
     cout << "Response: " << response.msg << endl;
     cout << "With Confidence: " << ofToString(response.confidence) << endl;
-    float processing_time = (response.tReceived - response.tSend) / 1000.f;
+    float processing_time = (response.tReceived - response.tSend) / TIME_SCALER;
     cout << "Processing Time (seconds): " << ofToString(processing_time) << endl;
     
-    std::string response_str = response.msg;
-    std::string command = "";
+    
+    std::string speech_input = response.msg; // Speech input
+    std::string command = ""; // First word spoken in input
     
     // Get the first command
-    for (char& c : response_str) {
+    for (char& c : speech_input) {
         if (c == ' ') {
             break;
         }
@@ -278,7 +282,7 @@ void mediaPlayer::gsttResponse(ofxGSTTResponseArgs& response){
     if (command == "play") {
         
         // Resume playback if the command is play
-        if (response_str.size() == PLAY_TXT_SIZE) {
+        if (speech_input.size() == PLAY_TXT_SIZE) {
             
             is_paused_ = false;
             songs_[current_song_index_].GetSoundPlayer().setPaused(is_paused_);
@@ -286,7 +290,7 @@ void mediaPlayer::gsttResponse(ofxGSTTResponseArgs& response){
         } else {
             
             // Get the song to be played, convert to lowercase, and remove punctuation
-            std::string song_to_play = response_str.substr(PLAY_PARAMETER_INDEX);
+            std::string song_to_play = speech_input.substr(PLAY_PARAMETER_INDEX);
             std::transform(song_to_play.begin(), song_to_play.end(), song_to_play.begin(), ::tolower);
             song_to_play.erase(remove_if(song_to_play.begin(), song_to_play.end(), ::ispunct), song_to_play.end());
             
@@ -297,7 +301,6 @@ void mediaPlayer::gsttResponse(ofxGSTTResponseArgs& response){
                 std::string song_name = song.GetName();
                 std::transform(song_name.begin(), song_name.end(), song_name.begin(), ::tolower);
                 song_name.erase(remove_if(song_name.begin(), song_name.end(), ::ispunct), song_name.end());
-                
                 
                 // Play the song to play if it matches with any of the songs
                 if (song_to_play == song_name) {
@@ -333,16 +336,13 @@ void mediaPlayer::gsttResponse(ofxGSTTResponseArgs& response){
 void mediaPlayer::SetupGSTT() {
     
     // Initialize ofSoundstream
-    int sample_rate = 44100;
-    int buffer_size = 256;
-    int channels = 1;
     sound_stream_.printDeviceList();
-    sound_stream_.setup(0, channels, sample_rate, buffer_size, 4);
+    sound_stream_.setup(0, CHANNELS, SAMPLE_RATE, BUFFER_SIZE, NUM_BUFFERS);
     
-    // Initialize ofxGSTT
-    gstt_.setup(sample_rate,channels,"en-us","AIzaSyBKIGETtjhXWjXyjq78LB6bbWX0cPR4478"); //check the README for generating an API key
+    // Initialize ofxGSTT with generated Google Speech API key
+    gstt_.setup(SAMPLE_RATE, CHANNELS,"en-us","AIzaSyBKIGETtjhXWjXyjq78LB6bbWX0cPR4478");
     gstt_.setAutoRecording(false);
-    gstt_.setVolumeThreshold(volume_threshold_);
+    gstt_.setVolumeThreshold(VOLUME_THRESHOLD);
     
     sound_stream_.setInput(gstt_);
     

@@ -8,7 +8,7 @@
 
 class mediaPlayer : public ofBaseApp {
     
-    // Change absolute path to data according to you
+    // Change absolute path to data directory
     const std::string ABS_PATH = "/Users/ashank/Documents/of_v0.9.8_osx_release/apps/myApps/SpeechMusicPlayer/bin/data/";
     
     // Spacing for image, artist text, and buttons on the left.
@@ -67,6 +67,10 @@ class mediaPlayer : public ofBaseApp {
     const int TALK_INFO_X = 825;
     const int TALK_INFO_Y = 628;
     
+    // Key binding information coordinates
+    const int KEY_INFO_X = 630;
+    const int KEY_INFO_Y = 50;
+    
     // Font sizes
     const int NAME_FONT_SIZE = 22;
     const int ARTIST_FONT_SIZE = 15;
@@ -75,6 +79,14 @@ class mediaPlayer : public ofBaseApp {
     // "Play" constants for speech recognition
     const int PLAY_TXT_SIZE = 4;
     const int PLAY_PARAMETER_INDEX = 5;
+    
+    // ofxGSTT sound constants
+    const float VOLUME_THRESHOLD = 0.05f;
+    const int SAMPLE_RATE = 44100;
+    const int BUFFER_SIZE = 256;
+    const int CHANNELS = 1;
+    const int NUM_BUFFERS = 4;
+    const float TIME_SCALER = 1000.f;
     
     // Background color of the window
     const int BACKGROUND_HEX_COLOR = 0x90CAF9;
@@ -94,8 +106,9 @@ private:
     // GSTT variables
     ofSoundStream sound_stream_;
     ofxGSTT gstt_;
-    float volume_threshold_ = 0.05f;
+    
     bool is_mic_on_ = false;
+    
     
     ofTrueTypeFont name_font_; // Font of name of song
     ofTrueTypeFont artist_font_; // Font of name of artist
