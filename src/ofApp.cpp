@@ -136,7 +136,7 @@ void mediaPlayer::mousePressed(int x, int y, int button){
 // Method that populates song vector using JSON helper
 void mediaPlayer::PopulateSongsAndMap() {
     
-    std::string file_name = ABS_PATH + "billboard_songs.json";
+    std::string file_name = ABS_PATH + "json/billboard_songs.json";
     songs_ = helper_.GetSongsFromJSONFile(file_name);
     
     for (int i = 0; i < songs_.size(); i++) {
@@ -439,9 +439,9 @@ void mediaPlayer::ShuffleCommand() {
 
 // Function for loading all the fonts of the application
 void mediaPlayer::LoadFonts() {
-    name_font_.load(ABS_PATH + "AlegreyaSans-Bold.ttf", NAME_FONT_SIZE);
-    artist_font_.load(ABS_PATH + "AlegreyaSans-BoldItalic.ttf", ARTIST_FONT_SIZE);
-    info_font_.load(ABS_PATH + "RobotoCondensed-Regular.ttf", INFO_FONT_SIZE);
+    name_font_.load(ABS_PATH + "fonts/AlegreyaSans-Bold.ttf", NAME_FONT_SIZE);
+    artist_font_.load(ABS_PATH + "fonts/AlegreyaSans-BoldItalic.ttf", ARTIST_FONT_SIZE);
+    info_font_.load(ABS_PATH + "fonts/RobotoCondensed-Regular.ttf", INFO_FONT_SIZE);
 }
 
 // Function for loading the mic sounds
